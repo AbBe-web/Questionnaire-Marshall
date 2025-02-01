@@ -24,6 +24,7 @@
         padding: 20px;
         display: flex;
         justify-content: center;
+        height: 100vh;
     }
     .container {
         background: white;
@@ -111,32 +112,4 @@
         }
     </script>
 </body>
-<body>
-    <div class="container">
-        <h1>Questionnaire de Marshall</h1>
-        <form id="marshallForm">
-            <div class="question">
-                <p>1. Combien de fois par semaine faites-vous 20 minutes d'activité intense ?</p>
-                <label><input type="radio" name="q1" value="4"> Plus de 3 fois par semaine</label>
-                <label><input type="radio" name="q1" value="2"> 1 à 2 fois par semaine</label>
-                <label><input type="radio" name="q1" value="0"> Jamais</label>
-            </div>
-            <div class="question">
-                <p>2. Combien de fois par semaine faites-vous 30 minutes d'activité modérée ?</p>
-                <label><input type="radio" name="q2" value="4"> Plus de 5 fois par semaine</label>
-                <label><input type="radio" name="q2" value="2"> 3 à 4 fois par semaine</label>
-                <label><input type="radio" name="q2" value="1"> 1 à 2 fois par semaine</label>
-                <label><input type="radio" name="q2" value="0"> Jamais</label>
-            </div>
-            <button type="button" onclick="calculateScore()">Calculer le score</button>
-        </form>
-        <div id="result" class="result"></div>
-    </div>
-</body>
-button {
-    transition: transform 0.2s ease-in-out;
-}
-button:hover {
-    transform: scale(1.05);
-}
 </html>
