@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Questionnaire de Marshall</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .result {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Questionnaire de Marshall</h1>
+    <form id="marshallForm">
+        <div class="question">
+            <p>1. Combien de fois par semaine faites-vous 20 minutes d'activité physique intense au point de transpirer ou de haleter ?</p>
+            <label><input type="radio" name="q1" value="4"> Plus de 3 fois par semaine</label><br>
+            <label><input type="radio" name="q1" value="2"> 1 à 2 fois par semaine</label><br>
+            <label><input type="radio" name="q1" value="0"> Jamais</label>
+        </div>
+        <div class="question">
+            <p>2. Combien de fois par semaine faites-vous 30 minutes d'activité physique modérée, ou de la marche, qui augmentent votre fréquence cardiaque ou vous font respirer plus fort que normalement ?</p>
+            <label><input type="radio" name="q2" value="4"> Plus de 5 fois par semaine</label><br>
+            <label><input type="radio" name="q2" value="2"> 3 à 4 fois par semaine</label><br>
+            <label><input type="radio" name="q2" value="1"> 1 à 2 fois par semaine</label><br>
+            <label><input type="radio" name="q2" value="0"> Jamais</label>
+        </div>
+        <button type="button" onclick="calculateScore()">Calculer le score</button>
+    </form>
+    <div id="result" class="result"></div>
+
+    <script>
+        function calculateScore() {
+            const form = document.forms['marshallForm'];
+            const q1 = parseInt(form['q1'].value);
+            const q2 = parseInt(form['q2'].value);
+            const totalScore = q1 + q2;
+
+            let message = 'Votre score est de ' + totalScore + '. ';
+            if (totalScore > 4) {
+                message += 'Vous êtes « suffisamment » actif. Continuez ainsi !';
+            } else {
+                message += 'Vous êtes « insuffisamment » actif. Il est recommandé d\'augmenter votre niveau d\'activité physique.';
+            }
+
+            document.getElementById('result').innerText = message;
+        }
+    </script>
+</body>
+</html>
