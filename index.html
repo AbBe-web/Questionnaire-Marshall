@@ -102,7 +102,7 @@
             <button type="button" onclick="calculateScore()">Calculer le score</button>
         </form>
         <div id="result" class="result"></div>
-        <div id="print-section">
+        <div id="print-section" style="display: none;">
             <div>
                 <label for="firstName">Prénom : </label>
                 <input type="text" id="firstName" name="firstName">
@@ -150,6 +150,9 @@
             }
 
             document.getElementById('result').innerText = message;
+
+            // Show the print section
+            document.getElementById('print-section').style.display = 'block';
 
             // Scroll to the result
             document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
