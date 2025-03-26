@@ -37,7 +37,7 @@
             padding: 5px;
             cursor: pointer;
         }
-        input[type="radio"] {
+        input[type="radio"], input[type="text"] {
             margin-right: 8px;
         }
         button {
@@ -56,7 +56,7 @@
             background-color: #0056b3;
             transform: scale(1.05);
         }
-        #result {
+        #result, #print-section {
             margin-top: 20px;
             font-weight: bold;
             text-align: center;
@@ -65,6 +65,20 @@
             background: #e3f2fd;
             color: #007BFF;
             width: 100%;
+        }
+        @media print {
+            body {
+                height: auto;
+            }
+            .container {
+                max-width: 100%;
+                box-shadow: none;
+            }
+            #print-section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
@@ -88,20 +102,45 @@
             <button type="button" onclick="calculateScore()">Calculer le score</button>
         </form>
         <div id="result" class="result"></div>
+        <div id="print-section">
+            <div>
+                <label for="firstName">Prénom : </label>
+                <input type="text" id="firstName" name="firstName">
+            </div>
+            <div>
+                <label for="lastName">Nom : </label>
+                <input type="text" id="lastName" name="lastName">
+            </div>
+            <div>
+                <label for="date">Date : </label>
+                <input type="text" id="date" name="date" readonly>
+            </div>
+            <button type="button" onclick="window.print()">Imprimer</button>
+        </div>
     </div>
 
     <script>
         function calculateScore() {
             const form = document.forms['marshallForm'];
-            const q1 = form['q1'].value ? parseInt(form['q1'].value) : 0;
-            const q2 = form['q2'].value ? parseInt(form['q2'].value) : 0;
+            const q1 = form['q1'].value;
+            const q2 = form['q2'].value;
 
-            if (isNaN(q1) || isNaN(q2)) {
-                alert('Veuillez répondre à toutes les questions.');
+            if (!q1 && !q2) {
+                alert('Merci de répondre aux 2 questions.');
                 return;
             }
 
-            const totalScore = q1 + q2;
+            if (!q1) {
+                alert('Merci de répondre à la question 1.');
+                return;
+            }
+
+            if (!q2) {
+                alert('Merci de répondre à la question 2.');
+                return;
+            }
+
+            const totalScore = parseInt(q1) + parseInt(q2);
 
             let message = 'Votre score est de ' + totalScore + '. ';
             if (totalScore > 4) {
@@ -111,7 +150,23 @@
             }
 
             document.getElementById('result').innerText = message;
+
+            // Scroll to the result
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+
+            // Set the current date
+            const currentDate = new Date().toLocaleDateString();
+            document.getElementById('date').value = currentDate;
         }
+
+        // Scroll to the second question if it's not fully visible
+        window.addEventListener('load', function() {
+            const question2 = document.querySelector('.question:nth-of-type(2)');
+            const rect = question2.getBoundingClientRect();
+            if (rect.bottom > window.innerHeight) {
+                question2.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+            }
+        });
     </script>
 </body>
 </html>
