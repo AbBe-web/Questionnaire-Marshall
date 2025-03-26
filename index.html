@@ -66,6 +66,28 @@
             color: #007BFF;
             width: 100%;
         }
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .form-row label {
+            margin-right: 10px;
+            flex: 1;
+        }
+        .form-row input {
+            flex: 2;
+        }
+        @media (max-width: 480px) {
+            .form-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .form-row label, .form-row input {
+                width: 100%;
+            }
+        }
         @media print {
             body {
                 height: auto;
@@ -103,15 +125,15 @@
         </form>
         <div id="result" class="result"></div>
         <div id="print-section" style="display: none;">
-            <div>
+            <div class="form-row">
                 <label for="firstName">Prénom : </label>
                 <input type="text" id="firstName" name="firstName">
             </div>
-            <div>
+            <div class="form-row">
                 <label for="lastName">Nom : </label>
                 <input type="text" id="lastName" name="lastName">
             </div>
-            <div>
+            <div class="form-row">
                 <label for="date">Date : </label>
                 <input type="text" id="date" name="date" readonly>
             </div>
