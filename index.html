@@ -121,7 +121,7 @@
                 <label><input type="radio" name="q2" value="1"> 1 à 2 fois par semaine</label><br>
                 <label><input type="radio" name="q2" value="0"> Jamais</label>
             </div>
-            <button type="button" onclick="calculateScore()">Calculer le score</button>
+            <button type="button" onclick="calculateScore()" id="calculateButton">Calculer le score</button>
         </form>
         <div id="result" class="result"></div>
         <div id="print-section" style="display: none;">
@@ -196,6 +196,17 @@
                 const rect = question2.getBoundingClientRect();
                 if (rect.bottom > window.innerHeight) {
                     question2.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+                }
+            });
+        });
+
+        // Scroll to the button if it's not fully visible after answering question 2
+        document.querySelectorAll('input[name="q2"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const button = document.getElementById('calculateButton');
+                const rect = button.getBoundingClientRect();
+                if (rect.bottom > window.innerHeight) {
+                    button.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
                 }
             });
         });
