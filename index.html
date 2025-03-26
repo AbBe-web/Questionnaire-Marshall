@@ -176,8 +176,13 @@
             // Show the print section
             document.getElementById('print-section').style.display = 'block';
 
-            // Scroll to the result
-            document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+            // Scroll to the result with a margin at the bottom
+            const resultElement = document.getElementById('result');
+            const marginBottom = 20; // Adjust this value as needed
+            window.scrollTo({
+                top: resultElement.offsetTop + resultElement.offsetHeight - window.innerHeight + marginBottom,
+                behavior: 'smooth'
+            });
 
             // Set the current date
             const currentDate = new Date().toLocaleDateString();
@@ -185,12 +190,14 @@
         }
 
         // Scroll to the second question if it's not fully visible
-        window.addEventListener('load', function() {
-            const question2 = document.querySelector('.question:nth-of-type(2)');
-            const rect = question2.getBoundingClientRect();
-            if (rect.bottom > window.innerHeight) {
-                question2.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
-            }
+        document.querySelectorAll('input[name="q1"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const question2 = document.querySelector('.question:nth-of-type(2)');
+                const rect = question2.getBoundingClientRect();
+                if (rect.bottom > window.innerHeight) {
+                    question2.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+                }
+            });
         });
     </script>
 </body>
