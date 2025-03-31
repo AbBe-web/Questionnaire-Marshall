@@ -204,10 +204,11 @@
         document.querySelectorAll('input[name="q2"]').forEach(radio => {
             radio.addEventListener('change', function() {
                 const button = document.getElementById('calculateButton');
-                const rect = button.getBoundingClientRect();
-                if (rect.bottom > window.innerHeight) {
-                    button.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
-                }
+                const marginBottom = 20; // Adjust this value as needed
+                window.scrollTo({
+                    top: button.offsetTop + button.offsetHeight - window.innerHeight + marginBottom,
+                    behavior: 'smooth'
+                });
             });
         });
     </script>
