@@ -177,10 +177,10 @@
             document.getElementById('print-section').style.display = 'block';
 
             // Scroll to the result with a margin at the bottom
-            const resultElement = document.getElementById('result');
+            const printSection = document.getElementById('print-section');
             const marginBottom = 20; // Adjust this value as needed
             window.scrollTo({
-                top: resultElement.offsetTop + resultElement.offsetHeight - window.innerHeight + marginBottom,
+                top: printSection.offsetTop - marginBottom,
                 behavior: 'smooth'
             });
 
@@ -206,7 +206,7 @@
                 const button = document.getElementById('calculateButton');
                 const marginBottom = 20; // Adjust this value as needed
                 window.scrollTo({
-                    top: button.offsetTop + button.offsetHeight - window.innerHeight + marginBottom,
+                    top: button.offsetTop - marginBottom,
                     behavior: 'smooth'
                 });
             });
