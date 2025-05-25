@@ -106,6 +106,14 @@
 </head>
 <body>
     <div class="container">
+            <!-- Bandeau RGPD -->
+    <div class="rgpd-banner">
+      Ce questionnaire, hébergé sur le site Github, ne stocke pas vos données. Vous pouvez l'imprimer pour votre usage personnel ou médical.
+      En continuant, vous acceptez que les données saisies puissent être affichées sur votre écran ou imprimées.
+      <a href="https://abbe-web.github.io/Q-APP-/politique-confidentialite.html" target="_blank" rel="noopener noreferrer">Consulter la politique de confidentialité</a> |
+      <a href="https://www.cnil.fr/fr/les-droits-pour-maitriser-vos-donnees-personnelles" target="_blank" rel="noopener noreferrer">Vos droits (CNIL)</a>
+    </div>
+
         <h1>Questionnaire de Marshall</h1>
         <form id="marshallForm">
             <div class="question">
@@ -127,11 +135,11 @@
         <div id="print-section" style="display: none;">
             <div class="form-row">
                 <label for="firstName">Prénom : </label>
-                <input type="text" id="firstName" name="firstName">
+                <input type="text" id="firstName" name="firstName (facultatif)">
             </div>
             <div class="form-row">
                 <label for="lastName">Nom : </label>
-                <input type="text" id="lastName" name="lastName">
+                <input type="text" id="lastName" name="lastName (facultatif)">
             </div>
             <div class="form-row">
                 <label for="date">Date : </label>
